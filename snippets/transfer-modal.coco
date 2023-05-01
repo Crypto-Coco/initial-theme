@@ -1,0 +1,131 @@
+<div class='modal' id='trasnferModal'>
+  <div class='modal-content'>
+    <form id='transfer_form'>
+      <span class='close' id='closeTransferModalBtn'>×</span>
+      <h2>Transfer your NFT</h2>
+
+      <div class='transfer_form_body'>
+        <label for='to'>Forwarding address</label>
+        <div>
+          <input
+            class='text_input'
+            type='text'
+            id='transfer_to'
+            placeholder='e.g. 0x9853D...66345CF'
+          >
+        </div>
+      </div>
+
+      <button class='metamask_btn' id='transfer_btn' type='submit'>Transfer</button>
+    </form>
+  </div>
+</div>
+
+<div class='modal' id='transferCompletedModal'>
+  <div class='modal-content'>
+    <span class='close' id='closeTransferCompletedModalBtn'>×</span>
+    <h2>Transfer completed 🎉</h2>
+
+    <div class='transfer_form_body'>
+      <p>Your NFT has been transferred to the address you specified.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: rgb(13, 17, 28);
+    margin: 15% auto;
+    padding: 24px;
+    padding-top: 14px;
+    width: 500px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .text_input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #2d3748;
+    font-size: 16px;
+    line-height: 1.5;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    margin-top: 16px;
+  }
+
+  .transfer_form_body {
+    margin-bottom: 24px;
+  }
+</style>
+
+<script>
+  const openTransferBtn = document.getElementById('openTransferBtn');
+  const closeTransferModalBtn = document.getElementById('closeTransferModalBtn');
+  const transferModal = document.getElementById('trasnferModal');
+
+  openTransferBtn.addEventListener('click', () => {
+    transferModal.style.display = 'block';
+  });
+
+  closeTransferModalBtn.addEventListener('click', () => {
+    transferModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', () => {
+    if (event.target === transferModal) {
+      transferModal.style.display = 'none';
+    }
+  });
+
+  const transferCompletedModal = document.getElementById('transferCompletedModal');
+  const closeTransferCompletedModalBtn = document.getElementById('closeTransferCompletedModalBtn');
+
+  closeTransferCompletedModalBtn.addEventListener('click', () => {
+    transferCompletedModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', () => {
+    if (event.target === transferCompletedModal) {
+      transferCompletedModal.style.display = 'none';
+    }
+  });
+
+  async function onClickTransfer(e) {
+    console.log(e);
+    e.preventDefault();
+    const transferBtn = document.getElementById('transfer_btn');
+    transferBtn.disabled = true;
+    transferBtn.innerHTML = 'Transferring...';
+
+    try {
+      await transfer();
+      transferModal.style.display = 'none';
+      transferCompletedModal.style.display = 'block';
+    } catch (error) {
+      console.error(error);
+    } finally {
+      transferBtn.disabled = false;
+      transferBtn.innerHTML = 'Transfer';
+    }
+  }
+
+  const transferForm = document.getElementById('transfer_form');
+  transferForm.addEventListener('submit', onClickTransfer);
+</script>

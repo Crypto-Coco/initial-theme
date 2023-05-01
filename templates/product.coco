@@ -1,0 +1,17 @@
+{% section 'header' %}
+<div class='main'>
+  {% section 'product-detail' %}
+</div>
+
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+    background-color: #15161a;
+    color: white;
+  }
+
+  .main {
+    padding: 32px;
+  }
+</style>

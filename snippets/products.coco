@@ -1,0 +1,103 @@
+<div class='cards'>
+  {%- for product in collection.products -%}
+    <a href='{{ product.url }}' class='link'>
+      <div class='card'>
+        <div class='img_wrapper'>
+          <img class='img' src='{{ product.image_url }}'>
+        </div>
+
+        <div class='info_wrapper'>
+          <h3 class='name'>{{ product.name }}</h3>
+
+          <div class='owner'>
+            <img class='owner_icon' src='{{ product.owner.icon_image_url }}'>
+            <div class='owner_name'>{{ product.owner.wallet_address | omit_address }}</div>
+          </div>
+        </div>
+      </div>
+    </a>
+  {%- endfor -%}
+</div>
+
+<style>
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .card {
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
+    width: 280px;
+    height: 280px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+
+    transition: box-shadow 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .img_wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .info_wrapper {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+
+    background-color: #1d1e26cf;
+    padding: 12px;
+    border-radius: 16px;
+
+    backdrop-filter: blur(4px);
+    transition: bottom 0.2s;
+  }
+
+  .card:hover .info_wrapper {
+    bottom: 20px;
+  }
+
+  .link {
+    text-decoration: none;
+    color: white;
+  }
+
+  .name {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .owner {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .owner_icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+  }
+
+  .owner_name {
+    font-size: 14px;
+  }
+</style>

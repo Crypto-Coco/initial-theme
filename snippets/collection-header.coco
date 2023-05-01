@@ -1,0 +1,22 @@
+<div>
+  <div class='collection_wrapper'>
+    <img class='collection_img' src='{{ collection.icon_image_url }}'>
+    <h1>{{ collection.name }}</h1>
+  </div>
+</div>
+
+<style>
+  .collection_wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .collection_img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+</style>

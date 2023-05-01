@@ -1,0 +1,111 @@
+<header class='header'>
+  <div class='left'>
+    <h2>{{ settings.header_title }}</h2>
+  </div>
+
+  <nav class='nav'>
+    {%- for link in linklists.mainMenu.links -%}
+      <a href='{{ link.url }}' class='nav-item'>{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+
+  <div class='user-info'>
+    {%- if connected_wallet -%}
+      <div class='chain-name'>
+        {{ connected_wallet.chain.name }}
+      </div>
+
+      <div class='avatar_wrapper'>
+        <img src='{{ connected_wallet.icon_image_url }}' alt='Avatar' class='avatar'>
+        <span class='username'>{{ connected_wallet.address | omit_address }}</span>
+        {% render 'account-menu' %}
+      </div>
+
+    {%- else -%}
+      {% render 'button', btn_name: 'Connect wallet', id: 'openConnectModal', settings: settings %}
+    {%- endif -%}
+  </div>
+</header>
+
+{% include 'wallet-modal' %}
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 48px;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    color: white;
+  }
+
+  .nav {
+    opacity: 0.6;
+    display: flex;
+    gap: 32px;
+  }
+
+  .nav-item {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .nav-item:hover {
+    color: #ccc;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .chain-name {
+    color: #fff;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    padding: 8px 16px;
+    margin-right: 8px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .username {
+    color: #fff;
+    margin-right: 10px;
+  }
+
+  .connect-wallet {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .connect-wallet:hover {
+    background-color: #45a049;
+  }
+
+  .avatar_wrapper {
+    display: flex;
+    align-items: center;
+  }
+</style>

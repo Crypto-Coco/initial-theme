@@ -1,0 +1,239 @@
+<div class='container'>
+  <div class='wrapper'>
+    <div class='img_wrapper'>
+      <img src='{{ product.image_url }}' class='img'>
+
+      {%- if is_owner -%}
+        <div class='menu'>
+          <button class='icon_btn' id='openTransferBtn'>
+            <img class='icon' src='{{ 'send-icon.svg' | asset_url }}'>
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class='right'>
+      <a href='{{ product.collection.url }}' class='link'>
+        <div class='collection'>
+          <img src='{{ product.collection.icon_image_url }}' class='collection_img'>
+          <div>
+            {{ product.collection.name }}
+          </div>
+        </div>
+      </a>
+
+      <h1>
+        {{ product.name }}
+      </h1>
+
+      <p>
+        {{ product.description }}
+      </p>
+
+      <div class='attributes'>
+        {%- for attr in product.attributes -%}
+          <div class='attr'>
+            <div class='trait-type'>
+              {{ attr.trait_type }}
+            </div>
+
+            <div class='value'>
+              {{ attr.value }}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class='th_row'>
+      <div class='th'>Event</div>
+      <div class='th'>From</div>
+      <div class='th'>To</div>
+      <div class='th'>Date</div>
+    </div>
+
+    <div class='tbody'>
+      {%- for event in product.events -%}
+        <div class='td_row'>
+          <div class='td'>
+            {{ event.event_name }}
+          </div>
+          <div class='td'>
+            {{ event.from.wallet_address | omit_address }}
+          </div>
+          <div class='td'>
+            {{ event.to.wallet_address | omit_address }}
+          </div>
+          <div class='td'>
+            {{ event.tx_timestamp | date: '%Y-%m-%d %H:%M' }}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% render 'transfer-modal' %}
+
+<style>
+  .container {
+    padding: 30px 120px;
+    box-sizing: border-box;
+  }
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    gap: 120px;
+    margin-bottom: 64px;
+  }
+
+  .img_wrapper {
+    height: 100%;
+    width: 50%;
+    aspect-ratio: 1/1;
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .img_wrapper .img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .img_wrapper:hover .menu {
+    opacity: 1;
+    bottom: 20px;
+  }
+
+  .icon_btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    background-color: #232631;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .icon_btn:hover {
+    background-color: #373d50;
+  }
+
+  .icon_btn .icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+  }
+
+  .img_wrapper .menu {
+    position: absolute;
+    display: flex;
+    width: 70%;
+    left: 50%;
+    bottom: -20px;
+    opacity: 0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    background-color: #232631;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+  }
+
+  .right {
+    width: 60%;
+  }
+
+  .attributes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
+    gap: 8px;
+  }
+
+  .attr {
+    background-color: #1216c833;
+    width: fit-content;
+    border-radius: 8px;
+    padding: 8px 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .trait-type {
+    color: gray;
+  }
+
+  .value {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .collection {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .collection_img {
+    height: 48px;
+    width: 48px;
+    border-radius: 8px;
+    margin-right: 8px;
+  }
+
+  .link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .th_row {
+    display: flex;
+    margin-bottom: 12px;
+    text-align: left;
+    color: white;
+    opacity: 0.5;
+  }
+
+  .th {
+    padding: 16px 14px;
+    flex: 1 0 100px;
+  }
+
+  .tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .td_row {
+    background: #232631;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    display: flex;
+  }
+
+  .td {
+    flex: 1 0 100px;
+    padding: 16px 14px;
+  }
+
+  .td_row .td .td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .td_row .td .td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+</style>

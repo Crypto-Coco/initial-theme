@@ -1,0 +1,58 @@
+<div class='collections_wrapper'>
+  <h1 class='collection_title'>Collections</h1>
+
+  <div class='cards'>
+    {%- for collection in collections -%}
+      <a href='{{ collection.url }}' class='link'>
+        <div class='card'>
+          <div class='img_wrapper'>
+            <img class='collecion_img' src='{{ collection.icon_image_url }}'>
+          </div>
+          <h3>{{ collection.name }}</h3>
+          <div>Test</div>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+  .collections_wrapper {
+    padding: 0px 40px;
+  }
+
+  .collection_title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    width: 200px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #22252f;
+  }
+
+  .cards {
+    display: flex;
+    gap: 20px;
+  }
+
+  .collecion_img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .img_wrapper {
+    width: 100%;
+  }
+
+  .link {
+    text-decoration: none;
+    color: white;
+  }
+</style>

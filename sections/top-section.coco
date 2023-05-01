@@ -1,0 +1,247 @@
+<div class='top_section_container'>
+  <div class='rainbow'></div>
+
+  <div class='top_section_box'>
+    <h1 class='top_section_title'>{{ section.settings.title }}</h1>
+    <p class='top_section_description'>
+      {{ section.settings.description }}
+    </p>
+
+    {% render 'button', btn_name: 'Get started' %}
+  </div>
+
+  <div class='slider'>
+    <div class='slide-track'>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_1 }}'
+          alt='Image 1'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_2 }}'
+          alt='Image 2'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_3 }}'
+          alt='Image 3'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_4 }}'
+          alt='Image 4'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_5 }}'
+          alt='Image 5'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_6 }}'
+          alt='Image 6'
+        >
+      </div>
+    </div>
+    <div class='slide-track'>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_1 }}'
+          alt='Image 1'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_2 }}'
+          alt='Image 2'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_3 }}'
+          alt='Image 3'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_4 }}'
+          alt='Image 4'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_5 }}'
+          alt='Image 5'
+        >
+      </div>
+      <div class='slide'>
+        <img
+          src='{{ section.settings.image_6 }}'
+          alt='Image 6'
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .top_section_container {
+    position: relative;
+  }
+
+  .top_section_box {
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 84px;
+  }
+
+  .rainbow {
+    width: 70%;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+
+    margin: 0 auto;
+    background: linear-gradient(
+      90deg,
+      #512c30 0%,
+      #67304c 14.23%,
+      #672f64 33.26%,
+      #4b3971 56.49%,
+      #35385e 81.38%,
+      #233449 100%
+    );
+    filter: blur(125px);
+  }
+
+  .top_section_title {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .top_section_description {
+    font-weight: 400;
+    margin-top: 2rem;
+    opacity: 0.5;
+    margin-bottom: 48px;
+  }
+
+  {% comment %} =====Slider=====  {% endcomment %}
+
+  .slider {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+  }
+
+  .slide-track {
+    display: flex;
+  }
+
+  .slide-track:nth-child(1) {
+    animation: loop 50s -25s linear infinite;
+  }
+
+  .slide-track:nth-child(2) {
+    animation: loop2 50s linear infinite;
+  }
+
+  .slide {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slide img {
+    width: 80%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes loop {
+    0% {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes loop2 {
+    0% {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-200%);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Top Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Discover the Future of Collectibles with out NFT Marketplace"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Explore the world of NFTs and discover the future of collectibles. Our NFT marketplace is the best place to buy and sell NFTs. We offer a wide range of NFTs for sale, including digital art, collectibles, and more."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1",
+      "default": "https://azk.imgix.net/images/5636d6c1-d3c2-41c2-ae2c-dc38f105cb45.png?w=2048"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2",
+      "default": "https://azk.imgix.net/images/4035f13c-123a-4431-8168-eeb319ad3496.png?w=2048"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3",
+      "default": "https://azk.imgix.net/images/b08d8ac4-7c1e-4eb7-a3e1-79fb7f36e0f7.png?w=2048"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4",
+      "default": "https://azk.imgix.net/images/93b58480-3342-40af-8d22-a1e5081da6cc.png?w=2048"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5",
+      "default": "https://azk.imgix.net/images/30a1ca91-bfe7-4e86-aa57-459e7044ac49.png?w=2048"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6",
+      "default": "https://azk.imgix.net/images/70d21d2b-c012-4621-af19-c22e76a1a377.png?w=2048"
+    }
+  ]
+}
+{% endschema %}

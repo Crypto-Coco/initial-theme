@@ -1,0 +1,25 @@
+<button class='blue_btn' id='{{id}}'>
+  {{ btn_name }}
+</button>
+
+<style>
+  .blue_btn {
+    border: none;
+    outline: none;
+    background-color: {{ settings.button_color }};
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  .blue_btn:hover {
+    background-color: #008ba3;
+  }
+
+  .blue_btn:active {
+    background-color: #005c73;
+  }
+</style>

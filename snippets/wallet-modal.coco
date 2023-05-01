@@ -1,0 +1,185 @@
+<div class='modal' id='connect_modal'>
+  <div class='modal-content'>
+    <span class='close' id='closeConnectModal'>×</span>
+    <h2>Connect a wallet</h2>
+    <p>
+      By connecting a wallet, you agree to Uniswap Labs' Terms of Service and consent to its Privacy
+      Policy.
+    </p>
+
+    <button class='metamask_btn' id='connect' onclick='connect()'>
+      <img src='{{ 'metamask-icon.svg' | asset_url }}' class='button_icon'>
+      Metamask
+    </button>
+  </div>
+</div>
+
+{% comment %}
+  <div class='modal' id='sign_modal'>
+    <div class='modal-content'>
+      <span class='close' id='closeSignModal' onclick='closeSignModal()'>&times;</span>
+      <h2>Sign message</h2>
+      <p>Please sign to login CryptoCoco</p>
+
+      <button class='metamask_btn' id='sign' onclick='signMessage()'>Sign message</button>
+    </div>
+  </div>
+{% endcomment %}
+
+<script>
+  const openConnectModalButton = document.getElementById('openConnectModal');
+  const closeConnectModal = document.getElementById('closeConnectModal');
+  const connectModal = document.getElementById('connect_modal');
+
+  openConnectModalButton.addEventListener('click', () => {
+    connectModal.style.display = 'block';
+  });
+
+  closeConnectModal.addEventListener('click', () => {
+    connectModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === connectModal) {
+      connectModal.style.display = 'none';
+    }
+  });
+
+  {% comment %} const openSignModalButton = document.getElementById('openSignModal');
+  const closeSignModalButton = document.getElementById('closeSignModal');
+  const signModal = document.getElementById('sign_modal'); {% endcomment %}
+
+  {% comment %} openSignModalButton.addEventListener('click', () => {
+    signModal.style.display = 'block';
+  });
+
+  function closeSignModal() {
+    signModal.style.display = 'none';
+  }
+
+  window.addEventListener('click', (event) => {
+    if (event.target === signModal) {
+      signModal.style.display = 'none';
+    }
+  }); {% endcomment %}
+
+  function connect() {
+    const connectButton = document.getElementById('connect');
+    connectButton.disabled = true;
+    connectButton.innerHTML = 'Connecting...';
+    connectWallet()
+      .then(() => {
+        connectModal.style.display = 'none';
+        {% comment %} signModal.style.display = 'block'; {% endcomment %}
+        connectButton.disabled = false;
+        connectButton.innerHTML = 'Metamask';
+      })
+      .catch((error) => {
+        console.log(error);
+        connectButton.disabled = false;
+        connectButton.innerHTML = 'Metamask';
+      });
+  }
+</script>
+
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: rgb(13, 17, 28);
+    margin: 15% auto;
+    padding: 24px;
+    padding-top: 14px;
+    width: 500px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+  }
+
+  .close {
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    line-height: 0.7;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .metamask_btn {
+    border: none;
+    background: rgb(19, 26, 42);
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .metamask_btn:disabled {
+    background-color: gray;
+  }
+
+  .metamask_btn:disabled:hover {
+    background-color: gray;
+  }
+
+  .metamask_btn:hover {
+    background-color: rgba(173, 188, 255, 0.24);
+  }
+
+  .button_icon {
+    margin-right: 8px;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+  }
+
+  .btn {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #45a049;
+  }
+</style>

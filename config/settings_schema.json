@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "label": "Header Title",
+        "id": "header_title",
+        "type": "text",
+        "default": "CryptoCoco"
+      }
+    ]
+  },
+  {
+    "name": "Button",
+    "settings": [
+      {
+        "label": "Button Color",
+        "id": "button_color",
+        "type": "color_picker",
+        "default": "#00bcd4"
+      }
+    ]
+  }
+]

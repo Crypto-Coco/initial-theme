@@ -1,0 +1,67 @@
+<div class="accordion accordion_active" id="product_detail_accordion">
+  <div class="accordion_header" id="product_detail_accordion_header">Details</div>
+
+  <div class="accordion_content">
+    <div class="product_detail_accordion-content">
+      {% comment %} Contract address {% endcomment %}
+      <div class="product_detail_accordion-inline">
+        <p class="product_detail_accordion-inline_left_text">Contract address</p>
+        <p class="product_detail_accordion-inline_right_text">
+          {{ product.collection.contract_address }}
+        </p>
+      </div>
+
+      {% comment %} Token ID {% endcomment %}
+      <div class="product_detail_accordion-inline">
+        <p class="product_detail_accordion-inline_left_text">Token ID</p>
+        <p class="product_detail_accordion-inline_right_text">
+          {{ product.token_id }}
+        </p>
+      </div>
+
+      {% comment %} Chain {% endcomment %}
+      <div class="product_detail_accordion-inline">
+        <p class="product_detail_accordion-inline_left_text">Chain</p>
+        <p class="product_detail_accordion-inline_right_text">
+          {{ product.collection.chain.name }}
+        </p>
+      </div>
+
+      {% comment %} Creator earnings {% endcomment %}
+      <div class="product_detail_accordion-inline">
+        <p class="product_detail_accordion-inline_left_text">Creator earnings</p>
+        <p class="product_detail_accordion-inline_right_text">{{ product.collection.royalty }}%</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .product_detail_accordion-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .product_detail_accordion-inline_left_text {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .product_detail_accordion-inline_right_text {
+    font-size: 14px;
+    color: #777e90;
+  }
+</style>
+
+<script>
+  const accordionHeader = document.getElementById('product_detail_accordion_header');
+  const accordion = document.getElementById('product_detail_accordion');
+
+  function toggleAccordion() {
+    accordion.classList.toggle('accordion_active');
+  }
+
+  accordionHeader.addEventListener('click', toggleAccordion);
+</script>

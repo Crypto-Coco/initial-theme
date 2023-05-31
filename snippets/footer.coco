@@ -1,0 +1,53 @@
+<footer>
+  <img class="footer_logo_image" src="{{ settings.footer_logo_image }}">
+
+  <div class="footer_right">
+    <p class="footer_license_text">
+      {{ settings.license_text }}
+    </p>
+    <p class="footer-link">
+      <a class="footer-temrs_of_use" href="{{ settings.temrs_of_use_link }}" target="_blank">
+        {{- settings.temrs_of_use_text -}}
+      </a>
+    </p>
+    <p class="footer-link">
+      <a class="footer-privacy" href="{{ settings.privacy_link }}" target="_blank">{{ settings.privacy_text }}</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid #353945;
+    padding: 20px 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer_logo_image {
+    width: 160px;
+    height: auto;
+  }
+
+  .footer_right {
+  }
+
+  .footer_license_text {
+    font-size: 14px;
+  }
+
+  .footer-temrs_of_use {
+    font-size: 14px;
+    color: white;
+  }
+
+  .footer-privacy {
+    font-size: 14px;
+    color: white;
+  }
+
+  .footer-link {
+    margin-top: 8px;
+  }
+</style>

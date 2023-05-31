@@ -1,28 +1,30 @@
-<header class='header'>
-  <div class='left'>
-    <h2>{{ settings.header_title }}</h2>
+<header class="header">
+  <div class="header_left">
+    <a class="header_left-logo_text" href="{{ linklists.mainMenu.link.home.url }}">
+      <img class="header_logo" src="{{ settings.header_logo }}">
+    </a>
+
+    <nav class="header_left-nav">
+      {%- for link in linklists.mainMenu.links -%}
+        <a href="{{ link.url }}" class="header_left-nav_item">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
   </div>
 
-  <nav class='nav'>
-    {%- for link in linklists.mainMenu.links -%}
-      <a href='{{ link.url }}' class='nav-item'>{{ link.title }}</a>
-    {%- endfor -%}
-  </nav>
-
-  <div class='user-info'>
+  <div class="header-user_info">
     {%- if connected_wallet -%}
-      <div class='chain-name'>
+      <div class="chain_name">
         {{ connected_wallet.chain.name }}
       </div>
 
-      <div class='avatar_wrapper'>
-        <img src='{{ connected_wallet.icon_image_url }}' alt='Avatar' class='avatar'>
-        <span class='username'>{{ connected_wallet.address | omit_address }}</span>
+      <div class="header-avatar_wrapper">
+        <img src="{{ connected_wallet.icon_image_url }}" alt="Avatar" class="header-user_info_avatar">
+        <span class="header-user_info_username">{{ connected_wallet.address | omit_address }}</span>
         {% render 'account-menu' %}
       </div>
 
     {%- else -%}
-      {% render 'button', btn_name: 'Connect wallet', id: 'openConnectModal', settings: settings %}
+      <button class="blue_btn" onclick="openWalletModal()">Connect wallet</button>
     {%- endif -%}
   </div>
 </header>
@@ -37,35 +39,45 @@
     padding: 12px 48px;
   }
 
-  .left {
+  .header_left-logo_text {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .header_left {
     display: flex;
     align-items: center;
     gap: 32px;
     color: white;
   }
 
-  .nav {
+  .header_logo {
+    width: 160px;
+    height: auto;
+  }
+
+  .header_left-nav {
     opacity: 0.6;
     display: flex;
     gap: 32px;
   }
 
-  .nav-item {
+  .header_left-nav_item {
     color: #fff;
     text-decoration: none;
   }
 
-  .nav-item:hover {
+  .header_left-nav_item:hover {
     color: #ccc;
   }
 
-  .user-info {
+  .header-user_info {
     display: flex;
     align-items: center;
     position: relative;
   }
 
-  .chain-name {
+  .chain_name {
     color: #fff;
     margin-right: 10px;
     border-radius: 10px;
@@ -74,37 +86,19 @@
     margin-right: 8px;
   }
 
-  .avatar {
+  .header-user_info_avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
   }
 
-  .username {
+  .header-user_info_username {
     color: #fff;
     margin-right: 10px;
   }
 
-  .connect-wallet {
-    background-color: #4caf50;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  .connect-wallet:hover {
-    background-color: #45a049;
-  }
-
-  .avatar_wrapper {
+  .header-avatar_wrapper {
     display: flex;
     align-items: center;
   }

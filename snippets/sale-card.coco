@@ -1,0 +1,118 @@
+{%- if product.sell != null -%}
+  <div class="sell_info_container">
+    <div class="sell_info_container-sale_ends">
+      {%- if product.sell.end_date == null -%}
+        No expiration date
+      {%- else -%}
+        Sale ends in {{ product.sell.end_date | date: '%Y-%m-%d %H:%M' }}
+      {%- endif -%}
+    </div>
+
+    <div class="sell_info_container-border"></div>
+
+    <div class="price_container">
+      <div class="price_container-price_title">Price</div>
+      <div class="price_container-price_infos">
+        <div class="price_container-price">
+          <img
+            src="{{ product.sell.price.cryptocurrency.icon_image_url }}"
+            class="price_container-price_crypto_logo_img"
+          >
+          <div class="price_container-price_crypto_amount">
+            {{ product.sell.price.cryptocurrency.amount | format_to_ether }}
+          </div>
+          <div class="price_container-price_crypto_symbol">
+            {{ product.sell.price.cryptocurrency.symbol }}
+          </div>
+        </div>
+
+        <div class="price_container-fiat_price">
+          {{ product.sell.price.fiat.sign }}
+          {{ product.sell.price.fiat.price }}
+        </div>
+      </div>
+
+      <div class="price_container_buttons">
+        {%- if connected_wallet == null -%}
+          <button class="blue_btn" onclick="openWalletModal('buy')">Buy now</button>
+        {% elsif product.is_correct_chain %}
+          <button class="blue_btn" id="open_buy_modal">Buy now</button>
+        {% else %}
+          <button
+            class="blue_btn"
+            onclick="openNetworkModal('buy', '{{ product.collection.chain.name }}', '{{ product.collection.chain.id }}')"
+          >
+            Buy now
+          </button>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+  .sell_info_container {
+    margin-top: 40px;
+    background-color: #22252f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid #353945;
+    background: #23262f;
+  }
+
+  .sell_info_container-sale_ends {
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  .sell_info_container-border {
+    border-bottom: 1px solid #373d50;
+  }
+
+  .price_container-price_crypto_logo_img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  .price_container {
+    padding: 20px;
+  }
+
+  .price_container-price_title {
+    font-size: 16px;
+    color: rgb(138, 147, 155);
+    margin-bottom: 8px;
+  }
+
+  .price_container-price_infos {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .price_container-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .price_container-fiat_price {
+    font-size: 16px;
+    color: rgb(138, 147, 155);
+  }
+
+  .price_container_buttons {
+    margin-top: 24px;
+  }
+
+  .price_container_buy_btn:hover {
+    background-color: #008ba3;
+  }
+
+  .price_container_buy_btn:active {
+    background-color: #005c73;
+  }
+</style>

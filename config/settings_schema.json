@@ -3,10 +3,10 @@
     "name": "Header",
     "settings": [
       {
-        "label": "Header Title",
-        "id": "header_title",
-        "type": "text",
-        "default": "CryptoCoco"
+        "label": "Header Logo",
+        "id": "header_logo",
+        "type": "image_picker",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/cocoa-kingdom2.png"
       }
     ]
   },
@@ -17,7 +17,58 @@
         "label": "Button Color",
         "id": "button_color",
         "type": "color_picker",
-        "default": "#00bcd4"
+        "default": "#3772ff"
+      },
+      {
+        "label": "Hover Button Color",
+        "id": "hover_button_color",
+        "type": "color_picker",
+        "default": "#2555d9"
+      },
+      {
+        "label": "Active Button Color",
+        "id": "active_button_color",
+        "type": "color_picker",
+        "default": "#153ab3"
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "label": "Footer Logo",
+        "id": "footer_logo_image",
+        "type": "image_picker",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/cocoa-logo-removebg-preview.png"
+      },
+      {
+        "label": "License Text",
+        "id": "license_text",
+        "type": "text",
+        "default": "© 2023 CocoShop LLC"
+      },
+      {
+        "label": "Terms of Use Link",
+        "id": "temrs_of_use_link",
+        "type": "text"
+      },
+      {
+        "label": "Terms of Use Text",
+        "id": "temrs_of_use_text",
+        "type": "text",
+        "default": "Terms of Use"
+      },
+      {
+        "label": "Privacy Link",
+        "id": "privacy_link",
+        "type": "text"
+      },
+      {
+        "label": "Privacy Text",
+        "id": "privacy_text",
+        "type": "text",
+        "default": "Privacy Policy"
       }
     ]
   }

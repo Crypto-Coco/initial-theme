@@ -1,11 +1,11 @@
-<div class='menu_wrapper'>
-  <div class='menu'>
-    <a class='menu-item' onclick='disconnect()'>Disconnect</a>
+<div class="account_menu_wrapper">
+  <div class="account_menu">
+    <a class="account_menu-menu_item" onclick="disconnect()">Disconnect</a>
   </div>
 </div>
 
 <style>
-  .menu_wrapper {
+  .account_menu_wrapper {
     display: none;
     position: absolute;
     z-index: 1;
@@ -14,14 +14,14 @@
     padding-top: 10px;
   }
 
-  .menu {
+  .account_menu {
     background-color: #202020;
     width: 160px;
     padding: 10px 0;
     border-radius: 5px;
   }
 
-  .menu-item {
+  .account_menu-menu_item {
     display: block;
     padding: 8px 16px;
     color: #fff;
@@ -30,11 +30,11 @@
     cursor: pointer;
   }
 
-  .menu-item:hover {
+  .account_menu-menu_item:hover {
     background-color: #353535;
   }
 
-  .avatar_wrapper:hover .menu_wrapper {
+  .header-avatar_wrapper:hover .account_menu_wrapper {
     display: block;
   }
 </style>

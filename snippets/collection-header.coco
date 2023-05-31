@@ -1,22 +1,73 @@
-<div>
-  <div class='collection_wrapper'>
-    <img class='collection_img' src='{{ collection.icon_image_url }}'>
-    <h1>{{ collection.name }}</h1>
+<div class="collection_header">
+  <div class="collection_header_top">
+    <div class="collection_header-name_wrapper">
+      <img class="collection_header-collection_img" src="{{ collection.icon_image_url }}">
+      <h1 class="collection_header-name_wrapper-name">{{ collection.name }}</h1>
+    </div>
+    <div>
+      {%- if collection.description != null -%}
+        <p class="collection_header-description">
+          {{ collection.description }}
+        </p>
+      {%- else -%}
+        <p class="collection_header-no_description">No description</p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="collection_header-cover_image_wrapper">
+    <img class="collection_header-cover_image" src="{{ collection.cover_image_url }}">
   </div>
 </div>
 
 <style>
-  .collection_wrapper {
+  .collection_header_top {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .collection_header-name_wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
   }
 
-  .collection_img {
+  .collection_header-collection_img {
     width: 60px;
     height: 60px;
     border-radius: 8px;
     border: 1px solid #ccc;
     margin-right: 10px;
+  }
+
+  .collection_header-name_wrapper-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .collection_header-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 3;
+    color: #777e90;
+  }
+
+  .collection_header-cover_image_wrapper {
+    padding: 32px 0;
+  }
+
+  .collection_header-no_description {
+    text-align: center;
+    color: #777e90;
+  }
+
+  .collection_header-cover_image {
+    width: 100%;
+    aspect-ratio: 7/2;
+    object-fit: cover;
+    border-radius: 24px;
   }
 </style>

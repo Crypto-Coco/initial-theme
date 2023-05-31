@@ -1,0 +1,239 @@
+<div class="modal" id="buy-modal">
+  <div class="modal_content">
+    <span class="modal_close" onclick="closeBuyModal()">×</span>
+    <h2 class="modal_title">Buy this NFT</h2>
+
+    <div class="product_info modal_body">
+      <div class="product_info_left">
+        <img src="{{ product.image_url }}" class="product_img">
+
+        <div class="product_info_details">
+          <div class="product_name">{{ product.name }}</div>
+          <div class="collection_name">
+            {{ product.collection.name }}
+          </div>
+        </div>
+      </div>
+
+      <div class="product_info_right">
+        <div class="product_price">
+          <div class="crypto_amount">
+            {{ product.sell.price.cryptocurrency.amount | format_to_ether }}
+          </div>
+          <div class="crypto_symbol">
+            {{ product.sell.price.cryptocurrency.symbol }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn_group">
+      <button class="buy_btn" id="buy-btn" onclick="buyProduct()">Buy</button>
+      <button class="cancel_btn" onclick="closeBuyModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="purchaseCompletedModal">
+  <div class="modal_content">
+    <span class="modal_close" id="closePurchaseCompletedModalBtn">×</span>
+    <h2 class="modal_title">Purchase has been completed 🎉</h2>
+
+    <div class="modal_body">
+      <p>The purchase of the NFT has been completed.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const openBuyModalBtn = document.getElementById('open_buy_modal');
+  const buyModal = document.getElementById('buy-modal');
+
+  const purchaseCompletedModal = document.getElementById('purchaseCompletedModal');
+  const closePurchaseCompletedModalBtn = document.getElementById('closePurchaseCompletedModalBtn');
+
+  const buyPreviousAction = localStorage.getItem('previousAction');
+  if (buyPreviousAction === 'buy') {
+    if ('{{ product.is_correct_chain }}' !== 'false') {
+      buyModal.style.display = 'block';
+    } else {
+      openNetworkModal('buy', '{{ product.collection.chain.name }}', '{{ product.collection.chain.id }}');
+    }
+  }
+
+  openBuyModalBtn.addEventListener('click', () => {
+    buyModal.style.display = 'block';
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === buyModal) {
+      buyModal.style.display = 'none';
+      localStorage.removeItem('previousAction');
+      window.location.reload();
+    }
+  });
+
+  function closeBuyModal() {
+    buyModal.style.display = 'none';
+    localStorage.removeItem('previousAction');
+  }
+
+  function buyProduct() {
+    const buyButton = document.getElementById('buy-btn');
+    buyButton.disabled = true;
+    buyButton.innerHTML = 'Buying...';
+    buy()
+      .then(() => {
+        buyModal.style.display = 'none';
+        buyButton.disabled = false;
+        buyButton.innerHTML = 'Buy now';
+        purchaseCompletedModal.style.display = 'block';
+      })
+      .catch((error) => {
+        console.log(error);
+        buyButton.disabled = false;
+        buyButton.innerHTML = 'Buy now';
+      })
+      .finally(() => {
+        localStorage.removeItem('previousAction');
+      });
+  }
+
+  closePurchaseCompletedModalBtn.addEventListener('click', () => {
+    purchaseCompletedModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', () => {
+    if (event.target === purchaseCompletedModal) {
+      purchaseCompletedModal.style.display = 'none';
+    }
+  });
+</script>
+
+<style>
+  .product_info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+  }
+
+  .product_info_left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .product_info_left .product_img {
+    width: 74px;
+    height: 74px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .product_info_left .product_info_details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .product_info_left .product_info_details .product_name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .product_info_left .product_info_details .collection_name {
+    font-size: 12px;
+    color: #aaaaaa;
+  }
+
+  .product_price {
+    display: flex;
+    gap: 4px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  #buy-modal .btn_group {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .buy_btn {
+    border: none;
+    background: rgb(19, 26, 42);
+    color: white;
+    padding: 12px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .cancel_btn {
+    border: none;
+    background: rgb(53, 56, 64);
+    color: white;
+    padding: 12px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .buy_btn:disabled {
+    background-color: gray;
+  }
+
+  .buy_btn:disabled:hover {
+    background-color: gray;
+  }
+
+  .buy_btn:hover {
+    background-color: rgba(173, 188, 255, 0.24);
+  }
+
+  .button_icon {
+    margin-right: 8px;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+  }
+
+  .btn {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #45a049;
+  }
+</style>

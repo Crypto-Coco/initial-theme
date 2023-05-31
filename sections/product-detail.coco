@@ -1,116 +1,162 @@
-<div class='container'>
-  <div class='wrapper'>
-    <div class='img_wrapper'>
-      <img src='{{ product.image_url }}' class='img'>
+<div class="product_detail_container">
+  <div class="product_detail_container-wrapper">
+    <div class="product_detail-left">
+      <div class="product_detail_container-wrapper_img_wrapper">
+        <img src="{{ product.image_url }}" class="product_img">
 
-      {%- if is_owner -%}
-        <div class='menu'>
-          <button class='icon_btn' id='openTransferBtn'>
-            <img class='icon' src='{{ 'send-icon.svg' | asset_url }}'>
-          </button>
+        {%- if product.is_owner -%}
+          <div class="product_menu">
+            {% if product.is_correct_chain %}
+              <button class="product_menu-icon_btn" id="open_transfer_btn">
+                <img class="product_menu-icon" src="{{ 'send-icon.svg' | asset_url }}">
+              </button>
+            {% else %}
+              <button
+                class="product_menu-icon_btn"
+                onclick="openNetworkModal('transfer', '{{ product.collection.chain.name }}', '{{ product.collection.chain.id }}')"
+              >
+                <img class="product_menu-icon" src="{{ 'send-icon.svg' | asset_url }}">
+              </button>
+            {% endif %}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div>
+        <div class="accordion_wrapper">
+          {% render 'product-detail-accordion' %}
         </div>
-      {%- endif -%}
+
+        <div class="accordion_wrapper">
+          {% render 'attributes-accordion' %}
+        </div>
+      </div>
     </div>
 
-    <div class='right'>
-      <a href='{{ product.collection.url }}' class='link'>
-        <div class='collection'>
-          <img src='{{ product.collection.icon_image_url }}' class='collection_img'>
-          <div>
+    <div class="product_detail-right">
+      <a href="{{ product.collection.url }}" class="link">
+        <div class="product_detail-right_collection">
+          <img src="{{ product.collection.icon_image_url }}" class="product_detail-right_collection_collection_img">
+          <div class="product_detail-right_collection_name">
             {{ product.collection.name }}
           </div>
         </div>
       </a>
 
-      <h1>
+      <h1 class="product_detail-product_name">
         {{ product.name }}
       </h1>
 
-      <p>
+      <div class="product_detail-owner_wrapper">
+        <p class="product_detail-owner_text">Owned by</p>
+        <p class="product_detail-owner_name">
+          {{ product.owner.username | omit_address }}
+        </p>
+      </div>
+
+      <p class="product_detail-description">
         {{ product.description }}
       </p>
 
-      <div class='attributes'>
-        {%- for attr in product.attributes -%}
-          <div class='attr'>
-            <div class='trait-type'>
-              {{ attr.trait_type }}
-            </div>
-
-            <div class='value'>
-              {{ attr.value }}
-            </div>
-          </div>
-        {%- endfor -%}
+      <div>
+        {% render 'sale-card' %}
       </div>
     </div>
   </div>
 
-  <div>
-    <div class='th_row'>
-      <div class='th'>Event</div>
-      <div class='th'>From</div>
-      <div class='th'>To</div>
-      <div class='th'>Date</div>
-    </div>
-
-    <div class='tbody'>
-      {%- for event in product.events -%}
-        <div class='td_row'>
-          <div class='td'>
-            {{ event.event_name }}
-          </div>
-          <div class='td'>
-            {{ event.from.wallet_address | omit_address }}
-          </div>
-          <div class='td'>
-            {{ event.to.wallet_address | omit_address }}
-          </div>
-          <div class='td'>
-            {{ event.tx_timestamp | date: '%Y-%m-%d %H:%M' }}
-          </div>
-        </div>
-      {%- endfor -%}
-    </div>
+  <div class="event_history_wrapper">
+    <h3 class="event_history_title">Event history</h3>
+    {%- if section.settings.show_event_history -%}
+      {% render 'event-history' %}
+    {%- endif -%}
   </div>
 </div>
 
 {% render 'transfer-modal' %}
+{% render 'change-network-modal' %}
+{% render 'buy-modal' %}
+
+{% schema %}
+{
+  "name": "Product Detail",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_event_history",
+      "label": "Show Event History",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
 
 <style>
-  .container {
+  .product_detail_container {
     padding: 30px 120px;
     box-sizing: border-box;
   }
 
-  .wrapper {
+  .product_detail_container-wrapper {
     width: 100%;
     display: flex;
-    gap: 120px;
+    gap: 60px;
     margin-bottom: 64px;
   }
 
-  .img_wrapper {
+  .product_detail-left {
+    width: 70%;
+    height: fit-content;
+  }
+
+  .accordion_wrapper:first-child {
+    margin-top: 32px;
+  }
+
+  .accordion_wrapper:not(:first-child) {
+    margin-top: 12px;
+  }
+
+  .product_detail_container-wrapper_img_wrapper {
     height: 100%;
-    width: 50%;
+    width: 100%;
     aspect-ratio: 1/1;
-    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 40px 32px -12px hsl(0deg 0% 0% / 0.2);
     border-radius: 16px;
     overflow: hidden;
     position: relative;
   }
 
-  .img_wrapper .img {
+  .product_detail_container-wrapper_img_wrapper .product_img {
     height: 100%;
     width: 100%;
   }
 
-  .img_wrapper:hover .menu {
+  .product_detail_container-wrapper_img_wrapper:hover .product_menu {
     opacity: 1;
     bottom: 20px;
   }
 
-  .icon_btn {
+  .product_detail-right_collection_name {
+    font-size: 1.5rem;
+  }
+
+  .product_detail-owner_wrapper {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1rem;
+    margin-top: 12px;
+    color: #777e90;
+  }
+
+  .product_detail-owner_name {
+    margin-left: 4px;
+    color: #3772ff;
+  }
+
+  .product_menu-icon_btn {
     width: 46px;
     height: 46px;
     border-radius: 999px;
@@ -123,17 +169,17 @@
     cursor: pointer;
   }
 
-  .icon_btn:hover {
+  .product_menu-icon_btn:hover {
     background-color: #373d50;
   }
 
-  .icon_btn .icon {
+  .product_menu-icon_btn .product_menu-icon {
     width: 20px;
     height: 20px;
     filter: invert(1);
   }
 
-  .img_wrapper .menu {
+  .product_detail_container-wrapper_img_wrapper .product_menu {
     position: absolute;
     display: flex;
     width: 70%;
@@ -149,42 +195,29 @@
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
   }
 
-  .right {
+  .product_detail-right {
     width: 60%;
   }
 
-  .attributes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    display: grid;
-    gap: 8px;
+  .product_detail-product_name {
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 8px;
   }
 
-  .attr {
-    background-color: #1216c833;
-    width: fit-content;
-    border-radius: 8px;
-    padding: 8px 16px;
-    width: 100%;
-    box-sizing: border-box;
+  .product_detail-description {
+    color: #777e90;
+    margin-top: 12px;
   }
 
-  .trait-type {
-    color: gray;
-  }
-
-  .value {
-    font-size: 18px;
-    font-weight: 500;
-  }
-
-  .collection {
+  .product_detail-right_collection {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-bottom: 16px;
   }
 
-  .collection_img {
+  .product_detail-right_collection_collection_img {
     height: 48px;
     width: 48px;
     border-radius: 8px;
@@ -196,44 +229,9 @@
     color: inherit;
   }
 
-  .th_row {
-    display: flex;
-    margin-bottom: 12px;
-    text-align: left;
-    color: white;
-    opacity: 0.5;
-  }
-
-  .th {
-    padding: 16px 14px;
-    flex: 1 0 100px;
-  }
-
-  .tbody {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .td_row {
-    background: #232631;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    display: flex;
-  }
-
-  .td {
-    flex: 1 0 100px;
-    padding: 16px 14px;
-  }
-
-  .td_row .td .td:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-  }
-
-  .td_row .td .td:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+  .event_history_title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
   }
 </style>

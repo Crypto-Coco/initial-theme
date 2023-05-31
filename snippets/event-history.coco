@@ -1,0 +1,70 @@
+<div class="event_history">
+  <div class="event_history-th_row">
+    <div class="event_history-th">Event</div>
+    <div class="event_history-th">From</div>
+    <div class="event_history-th">To</div>
+    <div class="event_history-th">Date</div>
+  </div>
+
+  <div class="event_history-tbody">
+    {%- for event in product.events -%}
+      <div class="event_history-td_row">
+        <div class="event_history-td">
+          {{ event.event_name }}
+        </div>
+        <div class="event_history-td">
+          {{ event.from.wallet_address | omit_address }}
+        </div>
+        <div class="event_history-td">
+          {{ event.to.wallet_address | omit_address }}
+        </div>
+        <div class="event_history-td">
+          {{ event.tx_timestamp | date: '%Y-%m-%d %H:%M' }}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+  .event_history-th_row {
+    display: flex;
+    margin-bottom: 8px;
+    text-align: left;
+    color: white;
+    opacity: 0.5;
+  }
+
+  .event_history-th {
+    padding: 16px 14px;
+    flex: 1 0 100px;
+  }
+
+  .event_history-tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .event_history-td_row {
+    background: #232631;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    display: flex;
+  }
+
+  .event_history-td {
+    flex: 1 0 100px;
+    padding: 16px 14px;
+  }
+
+  .event_history-td_row .event_history-td .td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .event_history-td_row .event_history-td .event_history-td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+</style>

@@ -1,0 +1,57 @@
+<div class="accordion" id="attribute_accordion">
+  <div class="accordion_header" id="attribute_accordion_header">Attributes</div>
+
+  <div class="accordion_content" id="attribute_accordion_content">
+    <div class="product_detail-attributes">
+      {%- for attr in product.attributes -%}
+        <div class="product_detail-attributes_attr">
+          <div class="product_detail-attributes_attr-trait_type">
+            {{ attr.trait_type }}
+          </div>
+
+          <div class="product_detail-attributes_attr-value">
+            {{ attr.value }}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .product_detail-attributes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .product_detail-attributes_attr {
+    background-color: #1216c833;
+    width: fit-content;
+    border-radius: 8px;
+    padding: 8px 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .product_detail-attributes_attr-trait_type {
+    color: gray;
+  }
+
+  .product_detail-attributes_attr-value {
+    font-size: 18px;
+    font-weight: 500;
+  }
+</style>
+
+<script>
+  const productDetailAccordionHeader = document.getElementById('attribute_accordion_header');
+  const productDetailCccordion = document.getElementById('attribute_accordion');
+
+  function toggleAccordion() {
+    productDetailCccordion.classList.toggle('accordion_active');
+  }
+
+  productDetailAccordionHeader.addEventListener('click', toggleAccordion);
+</script>

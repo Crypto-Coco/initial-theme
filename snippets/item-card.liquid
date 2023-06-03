@@ -1,30 +1,36 @@
-<div class="collection_card">
-  <div class="collection_card-image_wrapper">
-    <a class="collection_card-image_link" href="{{ collection_url }}">
-      <img class="collection_card-image" src="{{ cover_image_url }}">
+<div class="item_card">
+  <div class="item_card-image_wrapper">
+    <a class="item_card-image_link" href="{{ item_url }}">
+      <img class="item_card-image" src="{{ image_url }}">
     </a>
   </div>
+  <div class="item_card-detail">
+    <div class="item_card-collection_wrapper">
+      <a class="item_card-collection_name" href="{{ collection_url }}">
+        {{ collection_name }}
+      </a>
+    </div>
 
-  <div class="collection_card-detail">
-    <a class="collection_card-name_wrapper_link" href="{{ collection_url }}">
-      <div class="collection_card-name_wrapper">
-        <p class="collection_card-name">
-          {{ collection_name }}
+    <a class="item_card-name_wrapper_link" href="{{ item_url }}">
+      <div class="item_card-name_wrapper">
+        <p class="item_card-name">
+          {{ name }}
         </p>
-
-        <div class="collection_card-price_wrapper">
-          <p class="collection_card-price_wrapper-price">
-            {{ count }}
-            Items
-          </p>
-        </div>
+        {%- if amount != null -%}
+          <div class="item_card-price_wrapper">
+            <p class="item_card-price_wrapper-price">
+              {{ amount | format_to_ether }}
+              {{ symbol }}
+            </p>
+          </div>
+        {%- endif -%}
       </div>
     </a>
   </div>
 </div>
 
 <style>
-  .collection_card {
+  .item_card {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -32,14 +38,13 @@
     position: relative;
   }
 
-  .collection_card:hover .collection_card-image {
+  .item_card:hover .item_card-image {
     transform: scale(1.2);
   }
 
-  .collection_card-image_wrapper {
+  .item_card-image_wrapper {
     border-radius: 24px;
     width: 100%;
-    height: 150px;
     z-index: 1;
     overflow: hidden;
     position: relative;
@@ -51,35 +56,32 @@
     justify-content: center;
   }
 
-  .collection_card-image_link {
+  .item_card-image_link {
     cursor: pointer;
     text-decoration: none;
     z-index: 1;
-    width: 100%;
-    height: 100%;
   }
 
-  .collection_card-image {
+  .item_card-image {
     transition: all 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
-    height: 100%;
     display: block;
   }
 
-  .collection_card-detail {
+  .item_card-detail {
     width: 100%;
     margin-top: 12px;
   }
 
-  .collection_card-collection_wrapper {
+  .item_card-collection_wrapper {
     display: flex;
     width: 100%;
     align-items: center;
     flex-direction: row;
   }
 
-  .collection_card-collection_name {
+  .item_card-collection_name {
     line-height: 1.72;
     color: #777e90;
     word-break: break-all;
@@ -92,11 +94,11 @@
     font-size: 0.875rem;
   }
 
-  .collection_card-collection_name:hover {
+  .item_card-collection_name:hover {
     text-decoration: underline;
   }
 
-  .collection_card-name_wrapper {
+  .item_card-name_wrapper {
     display: flex;
     width: 100%;
     margin-top: 4px;
@@ -106,7 +108,7 @@
     overflow-wrap: break-word;
   }
 
-  .collection_card-name {
+  .item_card-name {
     line-height: 1.71;
     word-break: break-all;
     white-space: nowrap;
@@ -116,31 +118,31 @@
     font-size: 0.875rem;
   }
 
-  .collection_card-name_wrapper_link {
+  .item_card-name_wrapper_link {
     cursor: pointer;
     text-decoration: none;
     color: white;
   }
 
-  .collection_card-name_wrapper_link:before {
+  .item_card-name_wrapper_link:before {
     content: '';
     cursor: inherit;
     display: block;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 0;
     width: 100%;
     height: 100%;
   }
 
-  .collection_card-price_wrapper {
+  .item_card-price_wrapper {
     display: flex;
     algin-items: center;
     line-height: 1.67;
   }
 
-  .collection_card-price_wrapper-price {
+  .item_card-price_wrapper-price {
     color: #58bd7d;
     font-weight: bold;
     font-size: 0.875rem;

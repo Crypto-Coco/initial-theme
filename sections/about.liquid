@@ -17,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 0px 98px;
+    padding: 0 98px;
     box-sizing: border-box;
     margin-top: 48px;
   }
@@ -52,10 +52,10 @@
   }
 
   /* Tablet devices */
-  @media only screen and (min-width: 600px) and (max-width: 768px) {
+  @media only screen and (min-width: 600px) and(max-width: 768px) {
     .about_section {
       flex-direction: column;
-      padding: 0px 32px;
+      padding: 0 32px;
     }
 
     .about_section-right {
@@ -68,11 +68,11 @@
   @media only screen and (max-width: 600px) {
     .about_section {
       flex-direction: column;
-      padding: 0px 32px;
+      padding: 0 32px;
     }
 
     .about_section-left {
-      padding-right: 0px;
+      padding-right: 0;
       margin-bottom: 16px;
     }
 
@@ -84,45 +84,43 @@
 </style>
 
 {% schema %}
-{
-  "name": "About",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "ABOUT COCOA KINGDOM"
-    },
-    {
-      "type": "text",
-      "id": "description",
-      "label": "Description",
-      "default": "The COCOA Kingdom is comprised of three regions: the chocolate-rich Cocoa Vale, the energetic Coffee Cliffs, and the sweet confectionery forest of Sugar Summit. As the guardian Chocovan, the sorcerer Arabica, and the heroine Candira protect their territories, they engage in a battle against the villain Bitter. In this kingdom where sweetness and bitterness intertwine, a new story begins."
-    },
-    {
-      "type": "image_picker",
-      "id": "first_image",
-      "label": "First Image",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/chocovian.png"
-    },
-    {
-      "type": "image_picker",
-      "id": "second_image",
-      "label": "Second Image",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/arabica.png"
-    },
-    {
-      "type": "image_picker",
-      "id": "third_image",
-      "label": "Third Image",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/candra.png"
-    },
-    {
-      "type": "image_picker",
-      "id": "fourth_image",
-      "label": "Fourth Image",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/biter.png"
-    }
-  ]
-}
+  {
+    "name": "About",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "ABOUT COCOA KINGDOM"
+      },
+      {
+        "type": "text",
+        "id": "description",
+        "label": "Description",
+        "default": "The COCOA Kingdom is comprised of three regions: the chocolate-rich Cocoa Vale, the energetic Coffee Cliffs, and the sweet confectionery forest of Sugar Summit. As the guardian Chocovan, the sorcerer Arabica, and the heroine Candira protect their territories, they engage in a battle against the villain Bitter. In this kingdom where sweetness and bitterness intertwine, a new story begins."
+      },
+      {
+        "type": "image_picker",
+        "id": "first_image",
+        "label": "First Image",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/chocovian.png"
+      },
+      {
+        "type": "image_picker",
+        "id": "second_image",
+        "label": "Second Image",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/arabica.png"
+      }, {
+        "type": "image_picker",
+        "id": "third_image",
+        "label": "Third Image",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/candra.png"
+      }, {
+        "type": "image_picker",
+        "id": "fourth_image",
+        "label": "Fourth Image",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/biter.png"
+      }
+    ]
+  }
 {% endschema %}

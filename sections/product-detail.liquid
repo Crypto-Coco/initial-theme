@@ -11,10 +11,7 @@
                 <img class="product_menu-icon" src="{{ 'send-icon.svg' | asset_url }}">
               </button>
             {% else %}
-              <button
-                class="product_menu-icon_btn"
-                onclick="openNetworkModal('transfer', '{{ product.collection.chain.name }}', '{{ product.collection.chain.id }}')"
-              >
+              <button class="product_menu-icon_btn" onclick="openNetworkModal('transfer', '{{ product.collection.chain.name }}', '{{ product.collection.chain.id }}')">
                 <img class="product_menu-icon" src="{{ 'send-icon.svg' | asset_url }}">
               </button>
             {% endif %}
@@ -77,17 +74,17 @@
 {% render 'buy-modal' %}
 
 {% schema %}
-{
-  "name": "Product Detail",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_event_history",
-      "label": "Show Event History",
-      "default": true
-    }
-  ]
-}
+  {
+    "name": "Product Detail",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_event_history",
+        "label": "Show Event History",
+        "default": true
+      }
+    ]
+  }
 {% endschema %}
 
 <style>
@@ -119,8 +116,8 @@
   .product_detail_container-wrapper_img_wrapper {
     height: 100%;
     width: 100%;
-    aspect-ratio: 1/1;
-    box-shadow: 0px 40px 32px -12px hsl(0deg 0% 0% / 0.2);
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 40px 32px -12px hsl(0deg 0% 0% / 0.2);
     border-radius: 16px;
     overflow: hidden;
     position: relative;

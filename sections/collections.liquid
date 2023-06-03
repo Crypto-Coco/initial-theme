@@ -3,28 +3,26 @@
 
   <div class="cards">
     {%- for collection in collections -%}
-      {% render 'collection-card',
-        collection_url: collection.url,
-        cover_image_url: collection.cover_image_url,
-        count: collection.count,
-        collection_name: collection.name
-      %}
+      {% render 'collection-card'
+       , collection_url: collection.url,
+       cover_image_url: collection.cover_image_url,
+       count: collection.count,
+       collection_name: collection.name %}
     {%- endfor -%}
   </div>
 </div>
 
 <style>
   .collections_wrapper {
-    padding: 0px 32px;
+    padding: 0 32px;
     margin: 64px 0;
   }
 
   .collection_title {
     font-size: 24px;
     font-weight: bold;
-    margin: 0;
+    margin: 0 0 20px;
     padding: 0;
-    margin-bottom: 20px;
   }
 
   .card {
@@ -63,7 +61,7 @@
 
   @media only screen and (min-width: 1024px) {
     .collections_wrapper {
-      padding: 0px 98px;
+      padding: 0 98px;
     }
 
     .cards {

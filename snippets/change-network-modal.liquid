@@ -1,13 +1,10 @@
-<div class="modal" id="connect_modal">
+<div class="modal" id="changeNetworkModal">
   <div class="modal_content">
-    <span class="modal_close" id="closeConnectModal">×</span>
-    <h2 class="modal_title">Connect a wallet</h2>
-    <p class="modal_body">By connecting a wallet, you agree Terms of Service and consent to its Privacy Policy.</p>
+    <span class="modal_close" onclick="closeNetworkModal()">×</span>
+    <h2 class="modal_title">Change network</h2>
+    <p class="modal_body description">Please change the network to network_name to action this NFT</p>
 
-    <button class="metamask_btn" id="connect_btn">
-      <img src="{{ 'metamask-icon.svg' | asset_url }}" class="button_icon">
-      Metamask
-    </button>
+    <button class="metamask_btn" id="changeNetworkBtn">Switch</button>
   </div>
 </div>
 

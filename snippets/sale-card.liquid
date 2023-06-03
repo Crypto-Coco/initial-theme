@@ -14,10 +14,7 @@
       <div class="price_container-price_title">Price</div>
       <div class="price_container-price_infos">
         <div class="price_container-price">
-          <img
-            src="{{ product.sell.price.cryptocurrency.icon_image_url }}"
-            class="price_container-price_crypto_logo_img"
-          >
+          <img src="{{ product.sell.price.cryptocurrency.icon_image_url }}" class="price_container-price_crypto_logo_img">
           <div class="price_container-price_crypto_amount">
             {{ product.sell.price.cryptocurrency.amount | format_to_ether }}
           </div>
@@ -38,10 +35,7 @@
         {% elsif product.is_correct_chain %}
           <button class="blue_btn" id="open_buy_modal">Buy now</button>
         {% else %}
-          <button
-            class="blue_btn"
-            onclick="openNetworkModal('buy', '{{ product.collection.chain.name }}', '{{ product.collection.chain.id }}')"
-          >
+          <button class="blue_btn" onclick="openNetworkModal('buy', '{{ product.collection.chain.name }}', '{{ product.collection.chain.id }}')">
             Buy now
           </button>
         {% endif %}

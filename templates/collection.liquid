@@ -1,11 +1,8 @@
 {% section 'header' %}
 
-<div class="main">
-  {% section 'top-section' %}
-
-  {% section 'about' %}
-
-  {% section 'collections' %}
+<div class='main'>
+  {% render 'collection-header' %}
+  {% render 'products' %}
 </div>
 
 <style>
@@ -14,5 +11,9 @@
     margin: 0;
     background-color: #15161a;
     color: white;
+  }
+
+  .main {
+    padding: 32px 96px;
   }
 </style>

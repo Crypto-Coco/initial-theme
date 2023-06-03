@@ -28,7 +28,10 @@
     </div>
 
     <div class="btn_group">
-      <button class="buy_btn" id="buy-btn" onclick="buyProduct()">Buy</button>
+      <button
+        class="buy_btn"
+        id="buy-btn"
+        onclick="buyProduct()">Buy</button>
       <button class="cancel_btn" onclick="closeBuyModal()">Cancel</button>
     </div>
   </div>
@@ -82,21 +85,18 @@
     const buyButton = document.getElementById('buy-btn');
     buyButton.disabled = true;
     buyButton.innerHTML = 'Buying...';
-    buy()
-      .then(() => {
-        buyModal.style.display = 'none';
-        buyButton.disabled = false;
-        buyButton.innerHTML = 'Buy now';
-        purchaseCompletedModal.style.display = 'block';
-      })
-      .catch((error) => {
-        console.log(error);
-        buyButton.disabled = false;
-        buyButton.innerHTML = 'Buy now';
-      })
-      .finally(() => {
-        localStorage.removeItem('previousAction');
-      });
+    buy().then(() => {
+      buyModal.style.display = 'none';
+      buyButton.disabled = false;
+      buyButton.innerHTML = 'Buy now';
+      purchaseCompletedModal.style.display = 'block';
+    }).catch((error) => {
+      console.log(error);
+      buyButton.disabled = false;
+      buyButton.innerHTML = 'Buy now';
+    }). finally(() => {
+      localStorage.removeItem('previousAction');
+    });
   }
 
   closePurchaseCompletedModalBtn.addEventListener('click', () => {

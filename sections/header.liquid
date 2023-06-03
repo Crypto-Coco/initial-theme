@@ -18,7 +18,10 @@
       </div>
 
       <div class="header-avatar_wrapper">
-        <img src="{{ connected_wallet.icon_image_url }}" alt="Avatar" class="header-user_info_avatar">
+        <img
+          src="{{ connected_wallet.icon_image_url }}"
+          alt="Avatar"
+          class="header-user_info_avatar">
         <span class="header-user_info_username">{{ connected_wallet.address | omit_address }}</span>
         {% render 'account-menu' %}
       </div>

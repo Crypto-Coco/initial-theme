@@ -18,78 +18,42 @@
   <div class="top_section-slider">
     <div class="top_section_slider-slide_track">
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_1 }}"
-          alt="Image 1"
-        >
+        <img src="{{ section.settings.image_1 }}" alt="Image 1">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_2 }}"
-          alt="Image 2"
-        >
+        <img src="{{ section.settings.image_2 }}" alt="Image 2">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_3 }}"
-          alt="Image 3"
-        >
+        <img src="{{ section.settings.image_3 }}" alt="Image 3">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_4 }}"
-          alt="Image 4"
-        >
+        <img src="{{ section.settings.image_4 }}" alt="Image 4">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_5 }}"
-          alt="Image 5"
-        >
+        <img src="{{ section.settings.image_5 }}" alt="Image 5">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_6 }}"
-          alt="Image 6"
-        >
+        <img src="{{ section.settings.image_6 }}" alt="Image 6">
       </div>
     </div>
     <div class="top_section_slider-slide_track">
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_1 }}"
-          alt="Image 1"
-        >
+        <img src="{{ section.settings.image_1 }}" alt="Image 1">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_2 }}"
-          alt="Image 2"
-        >
+        <img src="{{ section.settings.image_2 }}" alt="Image 2">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_3 }}"
-          alt="Image 3"
-        >
+        <img src="{{ section.settings.image_3 }}" alt="Image 3">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_4 }}"
-          alt="Image 4"
-        >
+        <img src="{{ section.settings.image_4 }}" alt="Image 4">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_5 }}"
-          alt="Image 5"
-        >
+        <img src="{{ section.settings.image_5 }}" alt="Image 5">
       </div>
       <div class="top_section_slider-slide_track-slide">
-        <img
-          src="{{ section.settings.image_6 }}"
-          alt="Image 6"
-        >
+        <img src="{{ section.settings.image_6 }}" alt="Image 6">
       </div>
     </div>
   </div>
@@ -107,14 +71,14 @@
   .top_section_box {
     position: relative;
     margin: 0 auto;
-    aspect-ratio: 3/2;
+    aspect-ratio: 3 / 2;
     overflow: hidden;
     width: 100%;
     height: calc(100vh - 120px);
   }
 
   .top_section_bg_image {
-    background-image: url({{ section.settings.top_section_bg_image }});
+    background-image: url('{{ section.settings.top_section_bg_image }}');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -150,22 +114,14 @@
     z-index: -1;
 
     margin: 0 auto;
-    background: linear-gradient(
-      90deg,
-      #512c30 0%,
-      #67304c 14.23%,
-      #672f64 33.26%,
-      #4b3971 56.49%,
-      #35385e 81.38%,
-      #233449 100%
-    );
+    background: linear-gradient(90deg, #512c30 0%, #67304c 14.23%, #672f64 33.26%, #4b3971 56.49%, #35385e 81.38%, #233449 100%);
     filter: blur(125px);
   }
 
   .top_section_title {
     font-size: 3rem;
     font-weight: 700;
-    letter-spacing: .15em;
+    letter-spacing: 0.15em;
   }
 
   .top_section_description {
@@ -175,7 +131,8 @@
     margin-bottom: 48px;
   }
 
-  {% comment %} =====Slider=====  {% endcomment %}
+  {% comment %}
+    =====Slider====={% endcomment %}
 
   .top_section-slider {
     overflow: hidden;
@@ -228,7 +185,7 @@
     }
   }
 
-  @media only screen and (min-width: 600px) and (max-width: 768px) {
+  @media only screen and (min-width: 600px) and(max-width: 768px) {
     .top_section_title {
       font-size: 2rem;
     }
@@ -257,63 +214,58 @@
 </style>
 
 {% schema %}
-{
-  "name": "Top Section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "WELCOME TO THE COCOA<br />:Bitter-Sweet Kingdom"
-    },
-    {
-      "type": "text",
-      "id": "description",
-      "label": "Description",
-      "default": "\"COCOA: Bitter-Sweet Kingdom\" is a captivating tale of heroes and villains battling in a realm where chocolate, coffee, and candy coexist."
-    },
-    {
-      "type": "image_picker",
-      "id": "top_section_bg_image",
-      "label": "Background Image",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/top-section-bg.png"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_1",
-      "label": "Image 1",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/chocovan+%230.png"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "Image 2",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/arabica+%230.png"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_3",
-      "label": "Image 3",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/arabica.png"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_4",
-      "label": "Image 4",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/biter+%230.png"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_5",
-      "label": "Image 5",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/candra+%230.png"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_6",
-      "label": "Image 6",
-      "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/chocovan+%233.png"
-    }
-  ]
-}
+  {
+    "name": "Top Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "WELCOME TO THE COCOA<br />:Bitter-Sweet Kingdom"
+      },
+      {
+        "type": "text",
+        "id": "description",
+        "label": "Description",
+        "default": "\"COCOA: Bitter-Sweet Kingdom\" is a captivating tale of heroes and villains battling in a realm where chocolate, coffee, and candy coexist."
+      },
+      {
+        "type": "image_picker",
+        "id": "top_section_bg_image",
+        "label": "Background Image",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/top-section-bg.png"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image 1",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/chocovan+%230.png"
+      }, {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Image 2",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/arabica+%230.png"
+      }, {
+        "type": "image_picker",
+        "id": "image_3",
+        "label": "Image 3",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/arabica.png"
+      }, {
+        "type": "image_picker",
+        "id": "image_4",
+        "label": "Image 4",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/biter+%230.png"
+      }, {
+        "type": "image_picker",
+        "id": "image_5",
+        "label": "Image 5",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/candra+%230.png"
+      }, {
+        "type": "image_picker",
+        "id": "image_6",
+        "label": "Image 6",
+        "default": "https://dev-cocoshop-images.s3.us-east-2.amazonaws.com/chocovan+%233.png"
+      }
+    ]
+  }
 {% endschema %}
